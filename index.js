@@ -7,9 +7,9 @@ const db = mysql.createConnection(
     user: "root",
     // MySQL password
     password: "Changes23!",
-    database: "books_db",
+    database: "employee_db",
   },
-  console.log(`Connected to the book_db database.`)
+  console.log(`Connected to the employee_db database.`)
 );
 
 function menu() {
@@ -56,7 +56,7 @@ function menu() {
 function viewDepartments() {
   console.log("SHOWING ALL DEPARTMENT INFO");
   //SELECT * FROM departments;
-  db.query("SELECT * FROM department_name", (err, data) => {
+  db.query("SELECT * FROM departments", (err, data) => {
     console.table(data);
     menu();
   });
