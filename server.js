@@ -1,7 +1,7 @@
 const express = require("express");
 const mysql = require("mysql2");
-const inquirer = require("inquirer");
-const console.table = require("console.table");
+// const inquirer = require("inquirer");
+const consoleTable = require("console.table");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -18,10 +18,11 @@ const db = mysql.createConnection(
     user: "root",
     // TODO: Add MySQL Password
     password: "",
-    database: "books_db",
+    database: "employee_db",
   },
   console.log(``)
 );
+// node.js activity 20*
 
 // Query database using COUNT() and GROUP BY
 db.query(
