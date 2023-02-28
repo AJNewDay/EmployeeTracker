@@ -35,7 +35,7 @@ function menu() {
       if (answer.view === "view roles") {
         viewRoles();
       }
-      if (answer.view === "view employee") {
+      if (answer.view === "view employees") {
         viewEmployee();
       }
       if (answer.view === "add department") {
@@ -62,13 +62,34 @@ function viewDepartments() {
   });
 }
 function viewRoles() {
-  console.log("These are the roles.");
+  db.query("SELECT * FROM roles", (err, data) => {
+    console.table(data);
+    menu();
+  });
 }
 function viewEmployee() {
-  console.log("Showing employees");
+  db.query("SELECT * FROM employees", (err, data) => {
+    console.table(data);
+    menu();
+  });
 }
 function addDepartment() {
   console.log("dpt added");
+  inquirer
+    .prompt({
+      type: "input",
+      message: "What is the dept name?",
+      name: "deptName",
+    })
+    .then((answer) => {
+      db.query(
+        "INSERT INTO departments (name)VALUES ('answer.deptName'),",
+        (err, data) => {
+          console.table(data);
+          menu();
+        }
+      );
+    });
 }
 function addRole() {
   console.log("role added");
