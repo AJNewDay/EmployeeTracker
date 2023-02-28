@@ -83,7 +83,7 @@ function addDepartment() {
     })
     .then((answer) => {
       db.query(
-        "INSERT INTO departments (name)VALUES ('answer.deptName'),",
+        "INSERT INTO departments SET ?", ${answer.deptName}).then
         (err, data) => {
           console.table(data);
           menu();
