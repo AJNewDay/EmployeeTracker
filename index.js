@@ -74,7 +74,7 @@ function viewEmployee() {
   });
 }
 function addDepartment() {
-  console.log("dpt added");
+  //console.log("dpt added");
   inquirer
     .prompt({
       type: "input",
@@ -82,17 +82,40 @@ function addDepartment() {
       name: "deptName",
     })
     .then((answer) => {
-      db.query(
-        "INSERT INTO departments SET ?", ${answer.deptName}).then
-        (err, data) => {
-          console.table(data);
-          menu();
-        }
-      );
+      console.log(answer.deptName);
+      let newDepartment = answer.deptName;
+      db.query("INSERT INTO departments SET ?", { name: newDepartment });
+    })
+    .then(() => {
+      let query = "SELECT * FROM departments";
+      db.query(query, function (err, res) {
+        console.log("Your department has been added!");
+        console.table(res);
+        menu();
+      });
     });
 }
 function addRole() {
-  console.log("role added");
+  //console.log("dpt added");
+  inquirer
+    .prompt({
+      type: "input",
+      message: "What is the role called?",
+      name: "roleName",
+    })
+    .then((answer) => {
+      console.log(answer.roleName);
+      let newRole = answer.roleName;
+      db.query("INSERT INTO roles SET ?", { title: newRole });
+    })
+    .then(() => {
+      let query = "SELECT * FROM roles";
+      db.query(query, function (err, res) {
+        console.log("Your role has been added!");
+        console.table(res);
+        menu();
+      });
+    });
 }
 function addEmployee() {
   console.log("employee added");
