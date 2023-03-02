@@ -98,25 +98,53 @@ function addDepartment() {
 function addRole() {
   //console.log("dpt added");
   inquirer
-    .prompt({
-      type: "input",
-      message: "What is the role called?",
-      name: "roleName",
-    })
+    .prompt([
+      {
+        type: "input",
+        message: "What is the role called?",
+        name: "roleName",
+      },
+      {
+        type: "input",
+        message: "What is the role's salary?",
+        name: "roleSal",
+      },
+    ])
+
     .then((answer) => {
       console.log(answer.roleName);
       let newRole = answer.roleName;
-      db.query("INSERT INTO roles SET ?", { title: newRole });
-    })
-    .then(() => {
-      let query = "SELECT * FROM roles";
-      db.query(query, function (err, res) {
-        console.log("Your role has been added!");
-        console.table(res);
-        menu();
-      });
+      let newSal = answer.roleSal;
+      db.query("INSERT INTO roles SET ?", { title: newRole, salary: newSal });
+      console.log(answer.roleSal);
+      menu();
+      // db.query("INSERT INTO roles SET ?", { salary: newSal });
     });
 }
+// .then(() => {
+//   let query = "SELECT * FROM roles";
+//   db.query(query, function (err, res) {
+// console.log("Your role has been added!");
+// console.table(res);
+// menu();
+// inquirer
+//   .prompt({
+//     type: "input",
+//     message: "What is the role's salary?",
+//     name: "roleSal",
+// })
+// .then((answer) => {
+//   console.log(answer.roleSal);
+//   let newSal = answer.roleSal;
+//   db.query("INSERT INTO roles SET ?", { salary: newSal });
+// })
+// .then(() => {
+//   let query = "SELECT * FROM roles";
+//   db.query(query, function (err, res) {
+//     console.table(res);
+//   })
+// })
+
 function addEmployee() {
   console.log("employee added");
 }
@@ -124,50 +152,4 @@ function updateEmployeeRole() {
   console.log("employee role udated");
 }
 
-// {
-//   type: "checkbox",
-//   message: "What languages do you know?",
-//   name: "stack",
-//   choices: ["HTML", "CSS", "JavaScript", "MySQL"],
-// },
-// {
-//   type: "list",
-//   message: "What is your preferred method of communication?",
-//   name: "contact",
-//   choices: ["email", "phone", "telekinesis"],
-// },
-// ])
-// .then()
-// const filename = `${data.name.toLowerCase().split(" ").join("")}.json`;
-
-// view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-
-// inquirer
-//   .prompt([
-//     {
-//       message: "What is your name",
-//       type: "input",
-//       name: "myName",
-//     },
-//     {
-//       message: "What is your age",
-//       type: "input",
-//       name: "myAge",
-//     },
-//   ])
-//   .then((answer) => {
-//     console.log(answer);
-//   });
-
 menu();
-
-// const obj = {
-//   name: "aaron",
-//   occupation: "coder",
-//   favFood: "ice cream",
-//   age: 25,
-//   hobbies: ["swimming", "hiking", "sports"],
-//   school: { name: "U of Rich", location: "Richmond VA" },
-// };
-
-// console.log(obj.school.name);
