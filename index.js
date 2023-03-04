@@ -109,13 +109,23 @@ function addRole() {
         message: "What is the role's salary?",
         name: "roleSal",
       },
+      {
+        type: "input",
+        message: "What is the department id?",
+        name: "dptId",
+      },
     ])
 
     .then((answer) => {
-      console.log(answer.roleName);
+      // console.log(answer.roleName);
       let newRole = answer.roleName;
       let newSal = answer.roleSal;
-      db.query("INSERT INTO roles SET ?", { title: newRole, salary: newSal });
+      let newId = answer.dptId;
+      db.query("INSERT INTO roles SET ?", {
+        title: newRole,
+        salary: newSal,
+        department_id: newId,
+      });
       console.log(answer.roleSal);
       menu();
       // db.query("INSERT INTO roles SET ?", { salary: newSal });
@@ -146,8 +156,46 @@ function addRole() {
 // })
 
 function addEmployee() {
-  console.log("employee added");
+  //console.log("dpt added");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the employee's 1st name?",
+        name: "empName1",
+      },
+      {
+        type: "input",
+        message: "What is the employee's last name?",
+        name: "empName2",
+      },
+      {
+        type: "input",
+        message: "What is the employee's role id?",
+        name: "roleId",
+      },
+      {
+        type: "input",
+        message: "What is the employee's manager id?",
+        name: "manId",
+      },
+    ])
+
+    .then((answer) => {
+      let newName1 = answer.empName1;
+      let newName2 = answer.empName2;
+      let newRoleId = answer.roleId;
+      let newManId = answer.manId;
+      db.query("INSERT INTO employees SET ?", {
+        firstName: newName1,
+        lastName: newName2,
+        role_id: newRoleId,
+        manager_id: newManId,
+      });
+      menu();
+    });
 }
+
 function updateEmployeeRole() {
   console.log("employee role udated");
 }
