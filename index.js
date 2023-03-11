@@ -197,7 +197,35 @@ function addEmployee() {
 }
 
 function updateEmployeeRole() {
-  console.log("employee role udated");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the employee's 1st name?",
+        name: "upEmpName1",
+      },
+      {
+        type: "input",
+        message: "What is the employee's new role id?",
+        name: "empNewRole",
+      },
+    ])
+    .then((answer) => {
+      db.query("UPDATE employees SET role_id = ? WHERE firstName = ?", [
+        answer.empNewRole,
+        answer.upEmpName1,
+      ]);
+
+      // db.query(
+      //   `UPDATE employees SET role_id = '${answer.empNewRole}' WHERE firstName = '${answer.upEmpName1}'`
+      // );
+
+      console.log("employee role updated");
+
+      // UPDATE Customers
+      // SET PostalCode = 00000
+      // WHERE Country = 'Mexico';
+    });
 }
 
 menu();
