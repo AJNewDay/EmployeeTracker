@@ -131,29 +131,6 @@ function addRole() {
       // db.query("INSERT INTO roles SET ?", { salary: newSal });
     });
 }
-// .then(() => {
-//   let query = "SELECT * FROM roles";
-//   db.query(query, function (err, res) {
-// console.log("Your role has been added!");
-// console.table(res);
-// menu();
-// inquirer
-//   .prompt({
-//     type: "input",
-//     message: "What is the role's salary?",
-//     name: "roleSal",
-// })
-// .then((answer) => {
-//   console.log(answer.roleSal);
-//   let newSal = answer.roleSal;
-//   db.query("INSERT INTO roles SET ?", { salary: newSal });
-// })
-// .then(() => {
-//   let query = "SELECT * FROM roles";
-//   db.query(query, function (err, res) {
-//     console.table(res);
-//   })
-// })
 
 function addEmployee() {
   //console.log("dpt added");
@@ -216,15 +193,7 @@ function updateEmployeeRole() {
         answer.upEmpName1,
       ]);
 
-      // db.query(
-      //   `UPDATE employees SET role_id = '${answer.empNewRole}' WHERE firstName = '${answer.upEmpName1}'`
-      // );
-
       console.log("employee role updated");
-
-      // UPDATE Customers
-      // SET PostalCode = 00000
-      // WHERE Country = 'Mexico';
     });
 }
 
